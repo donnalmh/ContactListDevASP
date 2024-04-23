@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -15,13 +16,13 @@ namespace ContactListDev.Migrations
                 name: "Contact",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    Surname = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    ContactNumber = table.Column<long>(type: "bigint", nullable: false),
-                    EmailAddress = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "date", nullable: false)
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    Surname = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    ContactNumber = table.Column<long>(type: "BIGINT", nullable: false),
+                    EmailAddress = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "DATE", nullable: false)
                 },
                 constraints: table =>
                 {

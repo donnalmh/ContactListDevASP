@@ -34,6 +34,7 @@ namespace ContactListController.Controllers
 
         // GET api/ContactListController/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<ContactDetail>> GetContactDetail(int id)
         {
             var contactDetail = await _context.Contact.FindAsync(id);
@@ -48,6 +49,7 @@ namespace ContactListController.Controllers
 
         // POST api/ContactListController
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<ContactDetail>> PostContactDetail(ContactDetail contactDetail)
         {
             _context.Contact.Add(contactDetail);
@@ -58,6 +60,7 @@ namespace ContactListController.Controllers
 
         // PUT api/ContactListController/5
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutContactDetails(int id, ContactDetail contactDetail)
         {
             if (id != contactDetail.id)
@@ -89,6 +92,7 @@ namespace ContactListController.Controllers
 
         // DELETE api/<ValuesController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteContactDetail(int id)
         {
             var contactDetail = await _context.Contact.FindAsync(id);

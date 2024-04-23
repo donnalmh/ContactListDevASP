@@ -3,8 +3,8 @@ using System;
 using ContactListDev.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -18,35 +18,35 @@ namespace ContactListDev.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.2")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("ContactListDev.Models.ContactDetail", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
                     b.Property<long>("ContactNumber")
-                        .HasColumnType("bigint");
+                        .HasColumnType("BIGINT");
 
                     b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("date");
+                        .HasColumnType("DATE");
 
                     b.Property<string>("EmailAddress")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("VARCHAR(50)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("VARCHAR(50)");
 
                     b.Property<string>("Surname")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("VARCHAR(50)");
 
                     b.HasKey("id");
 

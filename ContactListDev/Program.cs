@@ -31,9 +31,9 @@ builder.Services.AddAuthentication(options =>
         };
     });
 builder.Services.AddDbContext<ContactDetailContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ContactListConnection"))
+      options.UseNpgsql(builder.Configuration.GetConnectionString("ContactListConnection"))
+    //options.UseSqlServer(builder.Configuration.GetConnectionString("ContactListConnection"))
 );
-builder.Services.AddCors();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -44,9 +44,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors(options => 
-options.WithOrigins("http://localhost:4200")
-    .AllowAnyHeader()
-    .AllowAnyMethod()
+
+    options.WithOrigins("http://localhost:4200")
+        .AllowAnyHeader()
+        .AllowAnyMethod()
 );
 
 app.UseAuthentication();

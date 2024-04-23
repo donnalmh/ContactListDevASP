@@ -9,19 +9,19 @@ namespace ContactListDev.Models
         [Key]
         public int id { get; set; }
 
-        [Column(TypeName = "nvarchar(50)")]
+        [Column(TypeName = "VARCHAR(50)")]
         public required string Name { get; set; }
 
-        [Column(TypeName = "nvarchar(50)")]
+        [Column(TypeName = "VARCHAR(50)")]
         public required string Surname { get; set; }
 
-        [Column(TypeName = "bigint")]
+        [Column(TypeName = "BIGINT")]
         public required long ContactNumber { get; set; }
 
-        [Column(TypeName = "nvarchar(50)")]
+        [Column(TypeName = "VARCHAR(50)")]
         public required string EmailAddress { get; set; }
 
-        [Column(TypeName = "date")]
+        [Column(TypeName = "DATE")]
         public required DateTime DateOfBirth { get; set; }
     }
 }
