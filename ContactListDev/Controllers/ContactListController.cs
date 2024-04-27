@@ -27,9 +27,13 @@ namespace ContactListController.Controllers
         // GET: api/Contact
         [HttpGet]
         [Authorize]
-        public async Task<ActionResult<IEnumerable<ContactDetail>>> GetContactDetail()
+        public async Task<ActionResult<IEnumerable<ContactDetail>>> GetContactDetail(
+            [FromQuery] PaginationParams @params)
         {
-            return await _context.Contact.ToListAsync();
+            return await _context.Contact
+                            .Skip((@params.Page - 1 ) * @params.ItemsPerPage)
+                            .Take(@params.ItemsPerPage)
+                            .ToListAsync();
         }
 
         // GET api/ContactListController/5

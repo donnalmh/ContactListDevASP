@@ -32,7 +32,6 @@ builder.Services.AddAuthentication(options =>
     });
 builder.Services.AddDbContext<ContactDetailContext>(options =>
       options.UseNpgsql(builder.Configuration.GetConnectionString("ContactListConnection"))
-    //options.UseSqlServer(builder.Configuration.GetConnectionString("ContactListConnection"))
 );
 var app = builder.Build();
 
