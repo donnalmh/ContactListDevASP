@@ -31,8 +31,9 @@ namespace ContactListController.Controllers
             [FromQuery] PaginationParams @params)
         {
             return await _context.Contact
-                            .Skip((@params.Page - 1 ) * @params.ItemsPerPage)
+                            .Skip((@params.Page - 1) * @params.ItemsPerPage)
                             .Take(@params.ItemsPerPage)
+                            .OrderBy(c => c.Name)
                             .ToListAsync();
         }
 
@@ -109,9 +110,7 @@ namespace ContactListController.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
-
         }
-
 
         private bool ContactDetailExists(int id)
         {
